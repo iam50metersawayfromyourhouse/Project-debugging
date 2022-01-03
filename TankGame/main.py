@@ -1,5 +1,5 @@
 import random
-import sys
+
 
 size = 7
 
@@ -12,8 +12,8 @@ grid = [['0', '0', '0', '0', '0', '0', '0'],
         ['0', '0', '0', '0', '0', '0', '0']]
 tank_phase = {"left": "-DMM",
               "right": "MMD-",
-              "up": "O|O",
-              "down": "O|O",
+              "up": "q|p",
+              "down": "d|b",
               "amogus": "-DHH",
               "empty": '0',}
 
@@ -32,14 +32,22 @@ class Panzer:
         # self.direction_options = ['left', 'right', 'up', 'down']
 
     def move(self):
-        new_position_x, new_position_y = input('\nWhere are we moving commander? [c|r]: ').split()
-        self.position_x = int(new_position_x) - 1
-        self.position_y = int(new_position_y) - 1
-        self.position_of_enemy_x = random.randint(0, 6)
-        self.position_of_enemy_y = random.randint(0, 6)
+        new_position_x, new_position_y = input('\nWhere are we moving commander? [col|row]: ').split()
+        self.position_x = int(new_position_x)
+        self.position_y = int(new_position_y)
+        enemy_not_in_player = False
+        while not enemy_not_in_player:
+            rand_x = random.randint(0, 6)
+            rand_y = random.randint(0, 6)
+            if rand_x == self.position_x and rand_y == self.position_y:
+                pass
+            else:
+                self.position_of_enemy_x = rand_x
+                self.position_of_enemy_y = rand_y
+                enemy_not_in_player = True
 
     def facing(self):
-        new_direction = input("\nWhich direction should we traverse the gun? [left]: ")
+        new_direction = input("\nWhich direction should we traverse the gun? [left|right|up|down|n]: ")
         if new_direction != 'n':
             self.direction = new_direction
         else:
