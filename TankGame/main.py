@@ -63,7 +63,7 @@ class Panzer:
                     self.shell_position_y -= 1
                     if self.shell_position_x == self.position_of_enemy_x and self.shell_position_y == self.position_of_enemy_y:
                         print("Nailed it!")
-                        print("Game over")
+                        print("Game over")  
                         self.game_over = True
             elif self.direction == 'down':
                 for i in range(size):
