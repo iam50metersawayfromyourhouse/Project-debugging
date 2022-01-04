@@ -1,26 +1,12 @@
-import random
-
+import random # to randomize enemy position
 
 size = 7
-
-grid = [['0', '0', '0', '0', '0', '0', '0'],
-        ['0', '0', '0', '0', '0', '0', '0'],
-        ['0', '0', '0', '0', '0', '0', '0'],
-        ['0', '0', '0', '0', '0', '0', '0'],
-        ['0', '0', '0', '0', '0', '0', '0'],
-        ['0', '0', '0', '0', '0', '0', '0'],
-        ['0', '0', '0', '0', '0', '0', '0']]
-tank_phase = {"left": "-DMM",
-              "right": "MMD-",
-              "up": "q|p",
-              "down": "d|b",
-              "amogus": "-DHH",
-              "empty": '0',}
 
 
 class Panzer:
 
     def __init__(self, direction_facing, position_x, position_y, position_of_enemy_x, position_of_enemy_y):
+        # initializing vars
         self.direction = direction_facing
         self.position_x = position_x
         self.position_y = position_y
@@ -31,7 +17,7 @@ class Panzer:
         self.game_over = False
         # self.direction_options = ['left', 'right', 'up', 'down']
 
-    def move(self):
+    def move(self): # moves player tank and also the enemy tank
         new_position_x, new_position_y = input('\nWhere are we moving commander? [col|row]: ').split()
         self.position_x = int(new_position_x)
         self.position_y = int(new_position_y)
@@ -46,7 +32,7 @@ class Panzer:
                 self.position_of_enemy_y = rand_y
                 enemy_not_in_player = True
 
-    def facing(self):
+    def facing(self): # changes the direction the tank is facing
         new_direction = input("\nWhich direction should we traverse the gun? [left|right|up|down|n]: ")
         if new_direction != 'n':
             self.direction = new_direction
@@ -58,7 +44,7 @@ class Panzer:
         request = input("\nShould we fire commander? [y|n]: ")
         if request.casefold() == 'y':
             print("Firing!")
-            if self.direction == 'left':
+            if self.direction == 'left': # fires in a straight line and if statement confirms if the shell hit the enemy
                 for i in range(size):
                     self.shell_position_x -= 1
                     if self.shell_position_x == self.position_of_enemy_x and self.shell_position_y == self.position_of_enemy_y:
@@ -94,10 +80,25 @@ class Panzer:
             print(f"We don't understand!")
 
 
-# actual game
+# variables
+grid = [['0', '0', '0', '0', '0', '0', '0'],
+        ['0', '0', '0', '0', '0', '0', '0'],
+        ['0', '0', '0', '0', '0', '0', '0'],
+        ['0', '0', '0', '0', '0', '0', '0'],
+        ['0', '0', '0', '0', '0', '0', '0'],
+        ['0', '0', '0', '0', '0', '0', '0'],
+        ['0', '0', '0', '0', '0', '0', '0']]
+tank_phase = {"left": "-DMM", # player and enemy "phases" (direction where player is looking)
+              "right": "MMD-",
+              "up": "q|p",
+              "down": "d|b",
+              "amogus": "-DHH", # enemy tank visualised (funny moment)
+              "empty": '0',}
+
 tank = Panzer('up', 6, 6, 4, 4)
 game_is_still_running = tank.game_over
 
+# draws the tanks in the grid
 
 def draw_tank(phase):
     grid[tank.position_y][tank.position_x] = tank_phase[phase]
@@ -105,6 +106,8 @@ def draw_tank(phase):
 
 def draw_enemy(phase):
     grid[tank.position_of_enemy_y][tank.position_of_enemy_x] = tank_phase[phase]
+
+# real game ->
 
 
 while not game_is_still_running:
@@ -118,7 +121,7 @@ while not game_is_still_running:
     tank.shell_position_y = tank.position_y
     draw_tank(tank.direction)
     draw_enemy("amogus")
-    print(*grid, sep='\n')
+    print(*grid, sep='\n') # prints the grid
     tank.facing()
     draw_tank(tank.direction)
     print(*grid, sep='\n')
