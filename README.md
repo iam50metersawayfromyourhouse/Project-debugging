@@ -1,6 +1,3 @@
-# Project-debugging
-New repository, my projects, you can try to improvise/rewrite it, or just tell me bugs you found 
-
 List of projects:
 
 # 1. Tank game
