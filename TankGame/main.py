@@ -61,28 +61,28 @@ class Panzer:
             if self.direction == 'left':
                 for i in range(size):
                     self.shell_position_x -= 1
-                    if self.shell_position_x and self.shell_position_y == self.position_of_enemy_x and self.position_of_enemy_y and not self.game_over:
+                    if self.shell_position_x == self.position_of_enemy_x and self.shell_position_y == self.position_of_enemy_y:
                         print("Nailed it!")
                         print("Game over")
                         self.game_over = True
             elif self.direction == 'right':
                 for i in range(size):
                     self.shell_position_x += 1
-                    if self.shell_position_x and self.shell_position_y == self.position_of_enemy_x and self.position_of_enemy_y and not self.game_over:
+                    if self.shell_position_x == self.position_of_enemy_x and self.shell_position_y == self.position_of_enemy_y:
                         print("Nailed it!")
                         print("Game over")
                         self.game_over = True
             elif self.direction == 'up':
                 for i in range(size):
                     self.shell_position_y -= 1
-                    if self.shell_position_x and self.shell_position_y == self.position_of_enemy_x and self.position_of_enemy_y and not self.game_over:
+                    if self.shell_position_x == self.position_of_enemy_x and self.shell_position_y == self.position_of_enemy_y:
                         print("Nailed it!")
                         print("Game over")
                         self.game_over = True
             elif self.direction == 'down':
                 for i in range(size):
                     self.shell_position_y += 1
-                    if self.shell_position_x and self.shell_position_y == self.position_of_enemy_x and self.position_of_enemy_y:
+                    if self.shell_position_x == self.position_of_enemy_x and self.shell_position_y == self.position_of_enemy_y:
                         print("Nailed it!")
                         print("Game over")
                         self.game_over = True
@@ -123,4 +123,6 @@ while not game_is_still_running:
     draw_tank(tank.direction)
     print(*grid, sep='\n')
     tank.fire()
+    print(tank.shell_position_x, tank.shell_position_y)
+    print(tank.position_of_enemy_x, tank.position_of_enemy_y)
     game_is_still_running = tank.game_over
