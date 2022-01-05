@@ -8,3 +8,9 @@ The enemy cant fire and cannot change it's position to be inside the player (hop
 Filled with bugs, debugged for 4 hours, help.
 
 Made in Pycharm
+
+Requires:
+
+-Downloading python
+
+-A program that can run python
