@@ -14,3 +14,25 @@ Requires:
 -Downloading python
 
 -A program that can run python
+
+
+
+# 2. Database project
+Just a simple sign up/ log in GUI app
+
+Made in IntelliJ IDEA
+
+Requires:
+
+- Java 8 and runtime
+
+# 3. Rock, Paper Scissors
+... a rock paper scissors game?
+
+Made in Pycharm
+
+Requires:
+
+-Downloading python
+
+-A program that can run python
